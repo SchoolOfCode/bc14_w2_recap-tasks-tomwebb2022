@@ -11,6 +11,6 @@ function countUp() {
     counter.textContent = counterValue;
     if (counterValue >= 12) {
         clearInterval(interval);
-    }
+    }l
 }
 interval= setInterval(countUp, 1000);
