@@ -1,13 +1,21 @@
-// 👉 TASK 3.1 Using fetch, get a random cat image URL using the API URL: https://api.thecatapi.com/v1/images/search
+const button = document.querySelector('#myButton');
+const imageContainer = document.querySelector('#imageContainer');
+
 async function getCatImage() {
-    let response = await fetch('https://api.thecatapi.com/v1/images/search');
-    let data = await response.json();
-    let imgUrl = data[0].url;
-    let catImg = document.getElementById('cat-here');
-    catImg.src = imgUrl;
+  try {
+    const response = await fetch('https://api.thecatapi.com/v1/images/search');
+    const data = await response.json();
+    const imgUrl = data[0].url;
+    const existingImage = imageContainer.querySelector('img');
+    if (existingImage) {
+      imageContainer.removeChild(existingImage);
+    }
+    const image = document.createElement('img');
+    image.src = imgUrl;
+    imageContainer.appendChild(image);
+  } catch (error) {
+    console.error(error);
+  }
 }
-getCatImage();
 
-createElement('Button');
-
-
+button.addEventListener('click', getCatImage);
